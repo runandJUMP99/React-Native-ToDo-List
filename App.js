@@ -9,16 +9,14 @@ export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [toDoList, setToDoList] = useState([]);
 
-  function handleCancel() {
-    setShowModal(false);
-  }
-
   function handleDelete(toDoId) {
-    setToDoList(toDoList.filter((toDo, index) => toDoId !== index));
+    setTimeout(() => {
+      setToDoList(toDoList.filter((toDo, index) => toDoId !== index));
+    }, 15);
   }
 
   function handleModal() {
-    setShowModal(true);
+    setShowModal(prevValue => !prevValue);
   }
 
   function handleSubmit(toDo) {
@@ -32,8 +30,8 @@ export default function App() {
 
   return (
     <View style={styles.screen}>
-      <Button title="Add To Do" onPress={handleModal}/>
-      <AddToDo handleCancel={handleCancel} handleSubmit={handleSubmit} showModal={showModal}/>
+      <Button title="Add To Do" onPress={handleModal} color="#2d4059"/>
+      <AddToDo handleModal={handleModal} handleSubmit={handleSubmit} showModal={showModal}/>
       <ToDoList handleDelete={handleDelete} toDoList={toDoList} />
       <StatusBar style="auto" />
     </View>
@@ -43,8 +41,9 @@ export default function App() {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ea5455',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingTop: 50
   }
 });

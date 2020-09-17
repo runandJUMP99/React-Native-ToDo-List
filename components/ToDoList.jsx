@@ -1,19 +1,19 @@
 import React from "react";
-import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {ScrollView, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 
 const ToDoList = (props) => {
     return (
-        <View style={styles.list}>
+        <ScrollView style={styles.list}>
             {props.toDoList.map((toDoItem, index) => {
                 return (
                     <TouchableOpacity key={index}  onPress={() => props.handleDelete(index)}>
                         <View style={styles.listItems}>
-                            <Text>{toDoItem}</Text>
+                            <Text style={styles.text}>{toDoItem}</Text>
                         </View>
                     </TouchableOpacity>
                 );
             })}
-        </View>
+        </ScrollView>
     );
 };
 
@@ -23,12 +23,23 @@ const styles = StyleSheet.create({
     },
     listItems: {
         alignSelf: "center",
-        backgroundColor: "#eee",
-        borderColor: "black",
-        borderWidth: 1,
-        marginTop: 20,
+        backgroundColor: "white",
+        borderRadius: 8,
+        elevation: 5,
+        fontWeight: "bold",
+        marginVertical: 10,
         padding: 10,
+        shadowColor: "black",
+        shadowOffset: {
+            height: 5,
+            width: 0
+        },
+        shadowOpacity: 0.5,
         width: "70%"
+    },
+    text: {
+        color: "#ea5455",
+        fontWeight: "bold"
     }
 });
 
